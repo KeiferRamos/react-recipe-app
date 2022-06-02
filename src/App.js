@@ -1,25 +1,46 @@
-import logo from './logo.svg';
-import './App.css';
+import Navbar from "./components/navbar";
+import Routes from "./routes";
+import "./styles/app.css";
+import { connect } from "react-redux";
+import { useEffect } from "react";
+import { GET_ALL_RECIPES, UPDATE_SCREEN_WIDTH } from "./actions";
+import { getAllRecipes } from "./api/recipes";
+import { useNavigate } from "react-router-dom";
 
-function App() {
+function App({ dispatch, recipeInfo, bookmarks }) {
+  const navigate = useNavigate();
+  useEffect(() => {
+    const setWidth = () => {
+      dispatch({
+        type: UPDATE_SCREEN_WIDTH,
+        payload: window.innerWidth,
+      });
+    };
+    window.addEventListener("resize", setWidth);
+    return () => window.removeEventListener("resize", setWidth);
+  }, [window.innerWidth]);
+
+  useEffect(() => {
+    getAllRecipes().then((data) =>
+      dispatch({ type: GET_ALL_RECIPES, payload: data })
+    );
+    navigate("/");
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("recipe", JSON.stringify(recipeInfo));
+  }, [recipeInfo]);
+
+  useEffect(() => {
+    localStorage.setItem("bookmark", JSON.stringify(bookmarks));
+  }, [bookmarks]);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Navbar />
+      <Routes />
     </div>
   );
 }
 
-export default App;
+export default connect((state) => state)(App);

@@ -1,0 +1,35 @@
+.accordion-container {
+  margin-top: 50px;
+  padding: 5px;
+}
+
+.accordion {
+  margin: 5px 0;
+}
+
+.accordion > .title {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  gap: 10px;
+  font-size: 16px;
+  color: #fff;
+  background: #4f7286;
+}
+
+.accordion .title > img {
+  width: 25px;
+  height: 25px;
+}
+
+.arrow {
+  margin-left: auto;
+}
+
+.accordion-details > img {
+  width: 100%;
+}
+
+.accordion-details div > p {
+  margin: 10px 0;
+}

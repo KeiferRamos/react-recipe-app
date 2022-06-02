@@ -1,0 +1,55 @@
+.bookmark-container {
+  margin-top: 100px;
+  padding: 10px;
+  gap: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(360px, auto));
+}
+
+.bookmark-item {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  gap: 10px;
+  background-color: #fff;
+}
+
+.bookmark-item > div {
+  word-break: break-all;
+}
+
+.bookmark-item div > h3 {
+  display: inline;
+}
+
+.bookmark-item > img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.recipe-link {
+  background: #487452;
+  color: #fff;
+  text-decoration: none;
+  padding: 5px;
+}
+
+.modal-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 20px;
+  color: #487452;
+  text-transform: uppercase;
+}
+
+@media (max-width: 360px) {
+  .bookmark-item {
+    display: grid;
+    place-items: center;
+    width: 340px;
+  }
+}
