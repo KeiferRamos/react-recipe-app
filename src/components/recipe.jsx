@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { getSingleRecipe } from "../api/recipes";
 import "../styles/recipes.css";
-import { FaThumbsUp } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { connect } from "react-redux";
 import { GET_RECIPE } from "../actions";
@@ -10,7 +9,8 @@ function Recipe({ id, infoID, setinfoID, dispatch }) {
   const summaryRef = useRef(null);
   const navigate = useNavigate();
   const [recipe, setRecipe] = useState({});
-  const { image, title, summary, aggregateLikes } = recipe;
+  const [showMore, setShowMore] = useState(false);
+  const { image, title, summary } = recipe;
 
   useEffect(() => {
     getSingleRecipe(id).then((data) => {
@@ -26,11 +26,14 @@ function Recipe({ id, infoID, setinfoID, dispatch }) {
   useEffect(() => {
     if (infoID) {
       if (infoID == id) {
+        setShowMore(true);
         summaryRef.current.innerHTML = summary;
       } else {
+        setShowMore(false);
         summaryRef.current.innerHTML = `${summary?.substring(0, 170)}...`;
       }
     } else {
+      setShowMore(false);
       summaryRef.current.innerHTML = `${summary?.substring(0, 170)}...`;
     }
   }, [infoID]);
@@ -46,16 +49,14 @@ function Recipe({ id, infoID, setinfoID, dispatch }) {
 
   return (
     <div className="recipe" onClick={(e) => showSingleRecipe(e)}>
-      <img className="recipe-img" src={image} alt="recipe image" />
-      <div className="likes">
-        <p>{aggregateLikes}</p>
-        <FaThumbsUp />
+      <div>
+        <img className="recipe-img" src={image} alt="recipe image" />
+        <h3 className="recipe-title">{title}</h3>
       </div>
-      <h3 className="recipe-title">{title}</h3>
-      <div className={`${infoID == id && "show-recipe"} summary`}>
+      <div className={`${showMore ? "show-recipe" : ""} summary`}>
         <div ref={summaryRef}></div>
         <button onClick={() => showRecipeInfo()} className="show-more-btn">
-          {infoID == id ? "show less" : "read more"}
+          {showMore ? "show less" : "read more"}
         </button>
       </div>
     </div>

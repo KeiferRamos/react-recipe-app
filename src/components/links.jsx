@@ -8,6 +8,7 @@ function Links({ name, path, screenWidth, closeNav }) {
   const navigate = useNavigate();
 
   const navigateUser = () => {
+    window.scrollTo(0, 0);
     navigate(path);
     closeNav();
   };
