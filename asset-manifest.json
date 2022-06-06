@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/react-recipe-app/static/css/main.26a194fd.css",
-    "main.js": "/react-recipe-app/static/js/main.468a802b.js",
-    "index.html": "/react-recipe-app/index.html",
-    "main.26a194fd.css.map": "/react-recipe-app/static/css/main.26a194fd.css.map",
-    "main.468a802b.js.map": "/react-recipe-app/static/js/main.468a802b.js.map"
+    "main.css": "/combinewords/static/css/main.60d99b34.css",
+    "main.js": "/combinewords/static/js/main.eacb3f8b.js",
+    "index.html": "/combinewords/index.html",
+    "main.60d99b34.css.map": "/combinewords/static/css/main.60d99b34.css.map",
+    "main.eacb3f8b.js.map": "/combinewords/static/js/main.eacb3f8b.js.map"
   },
   "entrypoints": [
-    "static/css/main.26a194fd.css",
-    "static/js/main.468a802b.js"
+    "static/css/main.60d99b34.css",
+    "static/js/main.eacb3f8b.js"
   ]
 }
